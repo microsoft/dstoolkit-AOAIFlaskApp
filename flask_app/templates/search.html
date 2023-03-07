@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Document Search</h2>
+        </br>
+        <h4>Embeddings</h4>
+        </br>
+        <p><b>Document Embeddings Model:</b> text-search-curie-doc-001 </p>
+        </br>
+        <p><b>Query Embedding Model:</b> text-search-curie-query-001 </p>
+        </br>
+        <p><b>Use Case:</b> Search through a set of reviews to find the 3 most similar ones.</p>
+        </br>
+        <p>Set of reviews used can be found <a href="https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews" class="nav-link-dataset">here</a>. This dataset contains 568,454 food review from Amazon. A subset of the 1000 most recent reviews will are used in this demo.</p>
+        </br>
+
+        <form name="inputForm" action="/search" method="post">
+            <label for="input">Please enter query:</label>
+            <input type="text" id="input" name="input" value="whole wheat pasta">
+            <br><br>
+            <p><input type="submit" value="Search reviews" id="submit_button" onclick="loading();clearResponse();"></p>
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating embedding score..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>        
+
+    </div>
+    
+</section>
+
+{% endblock %}

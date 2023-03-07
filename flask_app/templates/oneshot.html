@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Entity Extraction</h2>
+        </br>
+        <h4>GPT-3</h4>
+        </br>
+        <p><b>Model:</b> text-davinci-003</p>
+        </br>
+        <p><b>Use Case:</b> Zero-shot vs. One-shot learning</p>
+        </br>
+        <p>Extracting the following entities in the following formats:
+        <br>
+        <em>Companies:</em> comma-separated list of companies mentioned<br>
+        <em>People & titles:</em> comma-separated list of people mentioned (with their titles or roles appended in parentheses)
+        </p>
+        <p>Under zero-shot learning, 'Bobcat' should be misclassified as a Person, instead of a Company.</p>
+        </br>
+
+        <form id="form-submit" name="form-submit" action="/oneshot" method="post">
+            <p>Please enter the text to perform entity extraction on:</p>
+            <textarea rows="10" cols="100" id="input" name="input">Korean companies have joined international efforts to support residents living in earthquake-hit Turkey and Syria, according to industry officials, Wednesday.&#10;&#10;Hyundai Motor's Turkish subsidiary will provide $50,000 worth of rescue equipment and offer an additional $450,000 to purchase more hardware and daily necessities for victims, in collaboration with the Disaster and Emergency Management Presidency of Turkey.&#10;&#10;The carmaker will also provide a 50-percent discount to repair vehicles which are not covered by insurance, as well as another 50-percent discount on regular inspections of cars owned by residents in the earthquake-hit areas.&#10;&#10;"We hope our efforts will be helpful to the residents of earthquake-hit areas who are experiencing difficulties," Hyundai Motor Turkey President Kim Sang-su said.&#10;&#10;Doosan Group will send Bobcat skid-steer loaders and excavators, as well as portable power generators and lighting equipment, collectively worth around $1 million, to help save lives and restore buildings and roads.&#10;&#10;The construction equipment will be delivered as soon as possible through Doosan Bobcat's local dealer in Turkey, according to the group.&#10;&#10;"We hope the equipment is used immediately to offer practical support for rescue and restoration efforts," a Doosan Group official said.&#10;&#10;HD Hyundai, which owns construction equipment subsidiaries, will also provide 10 mid-size excavators for restoration works in Turkey.&#10;&#10;"We hope the residents return to their peaceful daily lives as soon as possible," a HD Hyundai official said.&#10;&#10;Kakao plans to donate money not only to victims in Turkey, but also to those in Syria.&#10;&#10;If its users write comments on Kakao's online donation platform to support the earthquake victims, the IT firm will donate 1,000 won ($0.80) per message.&#10;&#10;As of Wednesday morning, nearly 100,000 comments were written on the platform to support the victims.&#10;&#10;"Please join us to help children and neighbors in Turkey and Syria, who lost their homes due to the massive earthquakes," Kakao wrote on the platform.&#10;&#10;Hana Financial Group, which operates a bank in Istanbul, sent $300,000 in emergency funding to support the victims in Turkey and Syria.&#10;&#10;"For the restoration of the earthquake-hit areas and for the victims suffering from the winter cold, Hana Financial Group decided to provide support," Ham Young-joo, chairman of the financial group, said.&#10;&#10;Asan Foundation, chaired by HD Hyundai's largest shareholder Chung Mong-joon, delivered $300,000 to the Korean Red Cross for rescue and restoration works in Turkey and an additional $100,000 to the organization to help the victims in Syria.&#10;&#10;The Ministry of Land, Infrastructure and Transport will provide Turkey with high-resolution videos of the quake-hit areas, taken by the national land observation satellite so that rescue workers can assess the situations of inaccessible areas.</textarea>
+            <br><br>
+            <p><input type="submit" value="Zero-shot Learning" id="submit-button1" name="submit-button1" onclick="loading();clearResponse();">
+            <input type="submit" value="One-shot Learning" id="submit-button2" name="submit-button2" onclick="loading();clearResponse();"></p>
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating sql..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+
+    </div>
+        
+</section>
+
+{% endblock %}

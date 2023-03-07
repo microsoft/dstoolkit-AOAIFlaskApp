@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Code Generation</h2>
+        </br>
+        <h4>Codex</h4>
+        </br>
+        <p><b>Model:</b> code-davinci-002</p>
+        </br>
+        <p><b>Use Case:</b> Generate SQL from Natural Language.</p>
+        </br>
+
+        <form name="inputForm" action="/sql" method="post">
+            <p>Please enter the desired SQL tables structure and a query to perform:</p>
+            <textarea rows="10" cols="100" id="input" name="input">Employee(id, name, department_id)&#13;&#10;Department(id, name, address)&#13;&#10;Salary_Payments(id, employee_id, amount, date)&#13;&#10;A query to list the names of the departments which employed more than 10 employees in the last 3 months</textarea>
+            <br><br>
+            <p><input type="submit" value="Convert to SQL" id="submit_button" onclick="loading();clearResponse();"></p>
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating sql..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+
+    </div>
+        
+</section>
+
+{% endblock %}

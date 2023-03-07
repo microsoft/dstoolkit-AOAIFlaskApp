@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Semantic Similarity</h2>
+        </br>
+        <h4>Embeddings</h4>
+        </br>
+        <p><b>Model:</b> text-similarity-davinci-001</p>
+        </br>
+        <p><b>Use Case:</b> Capture semantic similarity between two pieces of text.</p>
+        </br>
+        <p>A similarity score is output based on the cosine similarity between the two texts' embedding vectors.</p>
+        </br>
+
+        <form name="inputForm" action="/embed" method="post">
+            <label for="text1">Please enter first text:</label>
+            <input type="text" id="text1" name="text1" value="Automobile">
+            </br></br>
+            <label for="text2">Please enter second text:</label>
+            <input type="text" id="text2" name="text2" value="Vehicle">
+            <br><br>
+            <p><input type="submit" value="Compare text" id="submit_button" onclick="loading();clearResponse();"></p>
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating embedding score..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+        
+
+    </div>
+    
+</section>
+
+{% endblock %}

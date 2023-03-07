@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+
+    <div class="intro-section-content">
+
+        <h2 class="mt-4">Text Classification</h2>
+        </br>
+        <h4>GPT-3</h4>
+        </br>
+        <p><b>Model:</b> text-davinci-003</p>
+        </br>
+        <p><b>Use Case:</b> Classify text into 3 categories.</p>
+        </br>
+
+        <form name="inputForm" action="/classify" method="post">
+
+            <p>Please enter the text to classify:</p>
+            <textarea rows="5" cols="100" id="text_input" name="text_input">Hello, one of the keys on my laptop keyboard broke recently and I'll need a replacement</textarea>
+            </br>
+            <label for="text_input">Please enter the categories:</label>
+            <input type="text" id="input" name="input" value="Pricing, Hardware Support, Software Support" size="70%">
+            <br><br>
+            <p><input type="submit" value="Classify" id="submit_button" onclick="loading();clearResponse();"></p>
+
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Classifying text..." width="100" height="100"/></div>
+            
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+
+    </div>
+
+</section>
+
+{% endblock %}

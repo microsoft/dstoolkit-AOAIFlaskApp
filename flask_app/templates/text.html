@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+
+    <div class="intro-section-content">
+        <h2 class="mt-4">Text Summarization</h2>
+        </br>
+        <h4>GPT-3</h4>
+        </br>
+        <p><b>Model:</b> text-davinci-003</p>
+        </br>
+        <p><b>Use Case:</b> Create a custom reference letter.</p>
+        </br>
+        <form name="inputForm" action="/text" method="post">
+            <p>Please enter the main points for discussion:</p>
+            <textarea rows="10" cols="100" id="input" name="input">Conor ranked the highest in his class out of 140 students. He achieved two academic scholarships. He is captain of the school's rugby team, leading them to three championship finals throughout his four years as captain. He is an active member of the school community, participating in fundraisers and extra-curriculars. He would be an asset to your alumni.</textarea>
+            <br><br>
+            <input type="submit" value="Generate my reference letter" id="submit_button" onclick="loading();clearResponse();">
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating reference..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+
+    </div>
+
+</section>
+
+{% endblock %}

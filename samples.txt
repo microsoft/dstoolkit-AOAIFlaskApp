@@ -1,0 +1,84 @@
+Text Summarisation
+
+INPUT:
+Conor ranked the highest in his class out of 140 students. He achieved two academic scholarships. He is captain of the school's rugby team, leading them to three championship finals throughout his four years as captain. He is an active member of the school community, participating in fundraisers and extra-curriculars. He would be an asset to your alumni.
+
+OUTPUT:
+{ "choices": 
+    [ 
+        { "finish_reason": "stop", 
+            "index": 0, 
+            "logprobs": null, 
+            "text": "\n\nI am pleased to write this reference letter in support of Conor, an outstanding student at our school. Conor achieved impressive academic standing, ranked the highest in his class out of 140, and received two academic scholarships. He exemplified strong leadership and organizational skills as captain of the rugby team, leading them to three championship finals throughout his four years in the role. In addition to his rugby achievements, Conor was an active member of the school community, participating in fundraisers and other extra-curricular activities. We are confident that Conor would be an asset to your alumni and would be an excellent addition to your team." 
+        } 
+    ], 
+    "created": 1676303459, 
+    "id": "cmpl-6jVOVvNiNIVFQuRrnwgKlw91DSGoP", 
+    "model": "text-davinci-003", 
+    "object": "text_completion", 
+    "usage": 
+        { "completion_tokens": 124, 
+            "prompt_tokens": 83, 
+            "total_tokens": 207 
+        } 
+}
+
+-------------
+NLP to SQL
+
+INPUT:
+Employee(id, name, department_id)
+Department(id, name, address)
+Salary_Payments(id, employee_id, amount, date)
+A query to list the names of the departments which employed more than 10 employees in the last 3 months
+
+OUTPUT:
+SELECT department.name 
+FROM department 
+INNER JOIN employee ON department.id = employee.department_id 
+INNER JOIN salary_payments ON employee.id = salary_payments.employee_id 
+WHERE salary_payments.date > NOW() - INTERVAL '3 months' 
+GROUP BY department.name 
+HAVING COUNT(employee.id) > 10
+
+-----------
+Classify Text
+
+INPUT:
+Pricing, Hardware Support, Software Support
+Hello, one of the keys on my laptop keyboard broke recently and I'll need a replacement
+
+OUTPUT:
+Hardware Support
+
+------------
+Similarity Embeddings
+
+INPUT:
+Automobile
+Vehicle
+
+OUTPUT:
+0.9097605152990093
+
+------------
+Text Search
+
+INPUT: 
+whole wheat pasta
+
+OUTPUT:
+1.
+Tasty and Quick Pasta:  Barilla Whole Grain Fusilli with Vegetable Marinara is tasty and has an excellent chunky vegetable marinara.  I just wish there was more of it.  If you aren't starving or on a diet, the 9oz serving is enough for lunch although you might want to add a piece of fruit to feel full.  The whole grain fusilli cooked to al dente tenderness following the instructions and the chunky marinara sauce is so good that I wished there was more of it.  Rarely do I eat sauce alone but this sauce is good enough to.
+
+2.
+sooo good:  tastes so good. Worth the money. My boyfriend hates wheat pasta and LOVES this. cooks fast tastes great.I love this brand and started buying more of their pastas. Bulk is best.
+
+3.
+Handy:  Love the idea of ready in a minute pasta and for that alone this product gets praise.  The pasta is whole grain so that's a big plus and it actually comes out al dente.  The vegetable marinara sauce is tasty, but has a high salt content - 710mg for a 9 oz. serving.<br /><br />It looks like much thought and testing went into creating the packaging, but I found it challenging.  You need to pull back the film to expose the sauce tray -- and not spill it.  I had to pull hard on the film, which made the sauce cup wiggle.  Easy to work around, but tricky nonetheless.<br /><br />All in all a step up from usual microwave in a minute fare.
+
+4.
+Rustichella ROCKS!:  Anything this company makes is worthwhile eating! My favorite is their Trenne.<br />Their whole wheat pasta is the best I have ever had.
+
+5.
+Wonderful:  Came quickly. Was plentiful and delicious and cheaper than in the store. You will enjoy it if you like thick pasta.

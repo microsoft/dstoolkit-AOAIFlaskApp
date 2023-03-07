@@ -1,0 +1,24 @@
+# Flask==2.2.2
+Flask
+# openai==0.26.5
+openai
+# pandas==1.5.3
+pandas
+# numpy==1.24.2
+numpy
+# transformers==4.26.1
+transformers
+# plotly==5.13.0
+plotly
+# matplotlib==3.7.0
+matplotlib
+# scikit-learn==1.2.1
+scikit-learn
+--pre torch -f https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html
+torchvision
+# scipy==1.10.0
+scipy
+# tiktoken==0.2.0
+tiktoken
+azure-storage-blob
+azure-identity

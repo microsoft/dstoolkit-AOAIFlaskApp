@@ -1,14 +1,27 @@
 # Project
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+# Introduction 
+This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity and document search. OpenAI APIs are used in place of Azure's OpenAI APIs until access to AOAI has been granted.
 
-As the maintainer of this project, please make a few updates:
+# Getting Started
+1.	create a virtual environment locally
+2.  pip install -r .\requirements.txt
+3.	replace OpenAI API key with your own (when running locally)
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+# Build and Test
+Run the app.py and load the website in your browser.
+There are 5 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
+1.  Summarise text - use case to generate a reference letter from mulitple points of discussion using GPT-3's Text Summarisation functionality.
+2.  Classify text - GPT-3 classifies text into one of multiple categories provided by the user.
+3.  NLP to SQL - uses OpenAI's codex model to tranform natural language to an SQL query.
+4.  Similarity Embedding - compares two pieces of text by transforming each into an embedding vector & using cosine similarity to generate a similarity score.
+5.  Document Search - creates embeddings for a set of Amazon food reviews (already done - just loaded into memory). compares these embeddings to the embedded user input and returns the top 3 reviews most similar to what the user asked.
+
+# Contribute
+Please reach out to clodaghlynch@microsoft.com for any questions, suggestions, or improvements. Thank you!
+
+# Resources
+https://microsofteur-my.sharepoint.com/:o:/g/personal/clodaghlynch_microsoft_com/Eg7NwxxSiBpDmyFOqlNmekIBcO_G6-_kG7SbOV7Y7pJIdg 
 
 ## Contributing
 
