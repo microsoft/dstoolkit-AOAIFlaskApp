@@ -5,6 +5,7 @@ import numpy as np
 from openai.embeddings_utils import get_embedding, cosine_similarity
 import os, uuid
 from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
 app = Flask(__name__)

@@ -10,12 +10,13 @@ This repo supplements the Azure OpenAI one-pager by providing code examples of s
 
 # Build and Test
 Run the app.py and load the website in your browser.
-There are 5 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
+There are 6 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
 1.  Summarise text - use case to generate a reference letter from mulitple points of discussion using GPT-3's Text Summarisation functionality.
 2.  Classify text - GPT-3 classifies text into one of multiple categories provided by the user.
 3.  NLP to SQL - uses OpenAI's codex model to tranform natural language to an SQL query.
 4.  Similarity Embedding - compares two pieces of text by transforming each into an embedding vector & using cosine similarity to generate a similarity score.
 5.  Document Search - creates embeddings for a set of Amazon food reviews (already done - just loaded into memory). compares these embeddings to the embedded user input and returns the top 3 reviews most similar to what the user asked.
+6.  Entity extraction - demonstrating zero-shot vs one-shot learning. An article is input and the names of companies as well as the names of people & their titles are extracted and returned to the user. Results should show improved accuracy with one-shot learning over zero-shot.
 
 # Contribute
 Please reach out to clodaghlynch@microsoft.com for any questions, suggestions, or improvements. Thank you!
