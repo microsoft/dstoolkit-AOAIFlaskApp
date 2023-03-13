@@ -3,11 +3,28 @@ import pandas as pd
 import re
 from transformers import GPT2TokenizerFast
 from openai.embeddings_utils import get_embedding
+import os
 
-openai.api_key = ""
-openai.api_base = ""
-openai.api_type = ""
-openai.api_version = ""
+from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
+
+keyVaultName = os.environ['KEYVAULT_NAME']
+KVUri = f"https://{keyVaultName}.vault.azure.net"
+
+default_credential = DefaultAzureCredential()
+credential = DefaultAzureCredential()
+client = SecretClient(vault_url=KVUri, credential=credential)
+
+aoai_api_key_secret = "AOAI-API-KEY"
+aoai_api_base_secret = "AOAI-API-BASE"
+
+aoai_api_key = client.get_secret(aoai_api_key_secret)
+aoai_api_base = client.get_secret(aoai_api_base_secret)
+
+openai.api_key = aoai_api_key
+openai.api_base = aoai_api_base
+openai.api_type = "azure"
+openai.api_version = "2022-12-01"
 
 doc_search_deployment = "test-doc-search"
 

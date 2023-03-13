@@ -4,16 +4,29 @@ import pandas as pd
 import numpy as np
 from openai.embeddings_utils import get_embedding, cosine_similarity
 import os, uuid
-from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+from azure.identity import DefaultAzureCredential
+import sys
 
 app = Flask(__name__)
-# openai.api_key = os.environ['OPENAI_APIKEY']
-openai.api_key = ""
-openai.api_base = ""
-openai.api_type = ""
-openai.api_version = ""
+
+keyVaultName = os.environ['KEYVAULT_NAME']
+KVUri = f"https://{keyVaultName}.vault.azure.net"
+
+default_credential = DefaultAzureCredential()
+credential = DefaultAzureCredential()
+client = SecretClient(vault_url=KVUri, credential=credential)
+
+aoai_api_key_secret = "AOAI-API-KEY"
+aoai_api_base_secret = "AOAI-API-BASE"
+
+aoai_api_key = client.get_secret(aoai_api_key_secret)
+aoai_api_base = client.get_secret(aoai_api_base_secret)
+
+openai.api_key = aoai_api_key
+openai.api_base = aoai_api_base
+openai.api_type = "azure"
+openai.api_version = "2022-12-01"
 
 text_deployment = "test"
 codex_deployment = "test-codex"

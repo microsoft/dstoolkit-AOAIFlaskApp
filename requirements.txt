@@ -20,6 +20,5 @@ torchvision
 scipy
 # tiktoken==0.2.0
 tiktoken
-azure-storage-blob
 azure-identity
 azure-keyvault-secrets
