@@ -124,16 +124,20 @@ def openai_text_summarisation(user_input):
     return response.choices[0].text
 
 def openai_codex(user_input):
+    user_str = ""
+    for l in user_input.splitlines():
+        user_str += "# " + l + "\n"
 
     response = openai.Completion.create(
         engine=codex_deployment,
-        prompt="Postgres SQL tables, with their properties:\n"+user_input+"\nSELECT",
+        prompt="# Postgres SQL tables, with their properties:\n#\n#"+user_str+"\n\nSELECT",
         temperature=0,
         max_tokens=150,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
-        stop=["#", ";"]
+        best_of=1,
+        stop=["#",";"]
     )
 
     text_reponse = ""
