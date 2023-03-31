@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+
+    <div class="intro-section-content">
+        <h2 class="mt-4">Creating Synthetic Data</h2>
+        </br>
+        <h4>GPT-3</h4>
+        </br>
+        <p><b>Model:</b> text-davinci-003</p>
+        </br>
+        <p><b>Use Case:</b> Create synthetic data based on natural language or example csv data. Click download button to create a download link below response.</p>
+        </br>
+        <form name="inputForm" action="/synthetic_data" method="post">
+            <p>Please enter a description for the data you wish to create:</p>
+            <textarea rows="10" cols="100" id="input" name="input">{{ input_base }}</textarea>
+            <br><br>
+            <input type="submit" value="Generate Data" id="submit-button1" name="submit-button1" onclick="loading();clearResponse();">
+            <input type="checkbox" id="download_tick" name="download_tick" checked><label for="scales">Download csv</label>
+        </form>
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating reference..." width="100" height="100"/></div>
+        
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+        <p id="response" style="width:75%; white-space:pre-wrap;"><a href="{{url_for('download_generated_data')}}">{{ download_link_text }}</a></p>
+
+    </div>
+
+</section>
+
+{% endblock %}

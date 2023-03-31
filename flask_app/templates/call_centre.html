@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+    function setRad(){
+        if (document.getElementById('std_en').checked){
+            localStorage.setItem('radioBtnId',"std_en");
+        } else if (document.getElementById('sentiment').checked){
+            localStorage.setItem('radioBtnId',"sentiment");
+        } else if (document.getElementById('summarize').checked){
+            localStorage.setItem('radioBtnId',"summarize");
+        } else if (document.getElementById('keywords').checked){
+            localStorage.setItem('radioBtnId',"keywords");
+        } else if (document.getElementById('customer_info').checked){
+            localStorage.setItem('radioBtnId',"customer_info");
+        } else if (document.getElementById('order_info').checked){
+            localStorage.setItem('radioBtnId',"order_info");
+        } else if (document.getElementById('customer_impr').checked){
+            localStorage.setItem('radioBtnId',"customer_impr");
+        } else if (document.getElementById('process_impr').checked){
+            localStorage.setItem('radioBtnId',"process_impr");
+        } else if (document.getElementById('intent').checked){
+            localStorage.setItem('radioBtnId',"intent");
+        } else if (document.getElementById('classify').checked){
+            localStorage.setItem('radioBtnId',"classify");
+        } else if (document.getElementById('3rd_person').checked){
+            localStorage.setItem('radioBtnId',"3rd_person");
+        }
+    };
+
+    function loadRad(){
+        console.log(localStorage.getItem("radioBtnId"));
+        var id = localStorage.getItem("radioBtnId")
+        document.getElementById(id).checked = true;
+    };
+    window.onload = loadRad;
+</script>
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Call Centre Analytics</h2>
+        <p>Example customer call to a company call centre:<audio controls><source src="{{url_for('static', filename='assets/customercall.wav')}}" type="audio/wav"></audio></p>
+        <p>Transcribed using <b>Azure Speech Service Speech to Text</b></p>
+        <p>Download transcript <a href="{{url_for('download_transcript')}}">here.</a></p></p>
+        </br>
+
+        <form id="inputForm" name="inputForm" action="/call_centre" method="post">
+            <input type="radio" name="group1" id="std_en" value="Convert to standard English">
+            <label for="std_en">Convert to standard English</label>
+            <br/>
+            <input type="radio" name="group1" id="keywords" value="Extract Keywords">
+            <label for="keywords">Extract Keywords</label>
+            <br/>
+            <input type="radio" name="group1" id="customer_info" value="Extract Customer Information">
+            <label for="customer_info">Extract Customer Information</label>
+            <br/>
+            <input type="radio" name="group1" id="sentiment" value="Sentiment Analysis">
+            <label for="sentiment">Sentiment Analysis</label>
+            <br/>
+            <input type="radio" name="group1" id="summarize" value="Summarize Conversation">
+            <label for="summarize">Summarize Conversation</label>
+            <br/>
+            <input type="radio" name="group1" id="order_info" value="Order Info">
+            <label for="order_info">Order Infomation</label>
+            <br/>
+            <input type="radio" name="group1" id="customer_impr" value="Customer Interaction Improvements">
+            <label for="customer_impr">Customer Interaction Improvements</label>
+            <br/>
+            <input type="radio" name="group1" id="process_impr" value="Process Improvements">
+            <label for="process_impr">Process Improvements</label>
+            <br/>
+            <input type="radio" name="group1" id="intent" value="Customer Intent">
+            <label for="intent">Customer Intent</label>
+            <br/>
+            <input type="radio" name="group1" id="classify" value="Classify Customer Enquiry">
+            <label for="classify">Classify Customer Enquiry</label>
+            <br/>
+            <input type="radio" name="group1" id="3rd_person" value="Convert to 3rd Person">
+            <label for="3rd_person">Convert to 3rd Person</label>
+            <br><br>
+            <p><input type="submit" value="Submit" id="submit_button" onclick="setRad();loading();clearResponse();"></p>
+        </form>
+        
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Loading..." width="100" height="100"/></div>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+
+    </div>
+        
+</section>
+
+{% endblock %}

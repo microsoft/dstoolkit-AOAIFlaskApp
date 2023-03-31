@@ -24,14 +24,21 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-openai"><img src="{{url_for('static', filename='assets/openai.webp')}}">OpenAI</div>
+                <div class="sidebar-heading border-bottom bg-openai"><img src="{{url_for('static', filename='assets/openai.webp')}}"> Azure OpenAI</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('text')}}">Summarise Text</a>
+                    <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">ChatGPT</a> -->
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('call_centre')}}">Call Centre Analytics</a>
+                    <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">Change Summary</a> -->
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('python')}}">NL to Python</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('synthetic_data')}}">Synthetic Data Generation</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('user_stories')}}">User Stories</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('text')}}">Text Generation</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('classify')}}">Classify Text</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('sql')}}">NLP to SQL</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('sql')}}">NL to SQL</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('embed')}}">Similarity Embedding</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('search')}}">Text Search</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('oneshot')}}">Entity Extraction</a>
+
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -70,7 +77,8 @@
         <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
     </body>
     <div class="blockquote-footer">
-        <p>Author: Clodagh Lynch</p>
+        <p>Author: Clodagh Lynch | Henry Taylor</p>
         <p><a href="mailto:clodaghlynch@microsoft.com">clodaghlynch@microsoft.com</a></p>
+        <p><a href="mailto:henrytaylor@microsoft.com">henrytaylor@microsoft.com</a></p>
     </div>
 </html>

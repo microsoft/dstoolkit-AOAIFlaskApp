@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section" id="intro">
+    <div class="intro-section-content">
+        <h2 class="mt-4">Change Summary</h2>
+        </br>
+        <h4>Extracting from a Business Model Canvas</h4>
+        </br>
+        
+        <form id="form-submit" name="form-submit" action="/change_summary" method="post">
+            <!-- <p>Prompt:</p> -->
+            <!-- <textarea rows="3" cols="100" id="prompt" name="prompt">{{ prompt_base }}</textarea> -->
+            <!-- <br> -->
+            <!-- <p><b>TODO: Form Recognizer</b> BMC:</p> -->
+            <!-- <textarea rows="10" cols="100" id="input" name="input">{{ input_base }}</textarea> -->
+            <img src="{{url_for('static', filename='assets/bmc.png')}}" alt="BMC" height="75%" width="75%">
+
+            <br><br>
+            <p><input type="submit" value="Generate Change Summary" id="submit-button1" name="submit-button1" onclick="loading();clearResponse();">
+            <!-- <input type="submit" value="One-shot Learning" id="submit-button2" name="submit-button2" onclick="loading();clearResponse();"></p> -->
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating sql..." width="100" height="100"/></div>
+    
+        <p id="response" style="width:75%; white-space:pre-wrap;"><a href="{{url_for('download_change_summary')}}">{{ fooResponse }}</a></p>
+
+    </div>
+        
+</section>
+
+{% endblock %}

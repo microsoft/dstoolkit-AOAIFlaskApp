@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+    function clearResponse2(){
+        // TODO:
+        // document.getElementById("t").remove();
+        document.getElementById("str").innerHTML = "";
+    }
+    function setRad(){
+        if (document.getElementById('tech').checked){
+            localStorage.setItem('radioBtnId',"tech");
+        } else if (document.getElementById('data').checked){
+            localStorage.setItem('radioBtnId',"data");
+        }
+    }
+    function loadRad(){
+        console.log(localStorage.getItem("radioBtnId"));
+        var id = localStorage.getItem("radioBtnId")
+        document.getElementById(id).checked = true;
+    };
+    window.onload = loadRad;
+</script>
+
+<section class="intro-section" id="intro">
+
+    <div class="intro-section-content">
+        <h2 class="mt-4">User Stories</h2>
+        </br>
+        </br>
+        <p><b>Use Case:</b> ATM withdrawal system</p>
+        </br>
+        <form name="inputForm" action="/user_stories" method="post">
+            <p>As an Account Holder I want to withdraw cash from an ATM So that I can get money when the bank is closed.</p>
+            <ul style="width: 70%;">
+                <li><i>Scenario 1:</i> Account has sufficient funds Given the account balance is $100 And the card is valid And the machine contains enough money When the Account Holder requests $20 Then the ATM should dispense $20 And the account balance should be $80 And the card should be returned</li>
+                <li><i>Scenario 2:</i> Account has insufficient funds Given the account balance is $10 And the card is valid And the machine contains enough money When the Account Holder requests $20 Then the ATM should not dispense any money And the ATM should say there are insufficient funds And the account balance should be $20 And the card should be returned</li>
+                <li><i>Scenario 3:</i> Card has been disabled Given the card is disabled When the Account Holder requests $20 Then the ATM should retain the card And the ATM should say the card has been retained</li>
+                <li><i>Scenario 4:</i> The ATM has insufficient funds</li>
+            </ul>
+            <br>
+            <input type="radio" name="group1" id="tech" value="Technical IT requirements" checked>
+            <label for="tech">Technical IT requirements</label>
+            <ul style="list-style-type: circle;">
+                <li>MOSCOW assessment
+                    <!-- <input type="checkbox" id="moscow" name="moscow" value="MOSCOW assessment">
+                    <label for="moscow">MOSCOW assessment</label>         -->
+                </li>
+                <li>Rank priority
+                    <!-- <input type="checkbox" id="prioritise" name="prioritise" value="Rank priority">
+                    <label for="prioritise">Rank priority</label>         -->
+                </li>
+            </ul>
+            <br/>
+
+            <input type="radio" name="group1" id="data" value="Data Attributes">
+            <label for="data">Data Attributes</label>
+            <ul style="list-style-type: circle;">
+                <li>Description and Data Format
+                    <!-- <input type="checkbox" id="tabular" name="tabular" value="Tabular format">
+                    <label for="tabular">Tabular</label>         -->
+                </li>
+                <li> Python script
+                    <!-- <input type="checkbox" id="python" name="python" value="Generate Python script">
+                    <label for="Python">Generate Python script</label>         -->
+                </li>
+            </ul>
+            <br/>
+            <input type="submit" value="Generate insights" id="submit_button" onclick="setRad();loading();clearResponse();clearResponse2();">            
+        </form>
+
+        <div id="loading" style="display:none;"><img src="{{url_for('static', filename='assets/R.gif')}}" alt="Generating reference..." width="100" height="100"/></div>
+    
+        <br>
+        <p id="response" style="width:75%; white-space:pre-wrap;">{{ fooResponse }}</p>
+        <p id="t" style="width:75%; white-space:pre-wrap;" >{{t | safe}}</p>
+        <p id="str" style="width:75%; white-space:pre-wrap;">{{str}}</p>
+
+    </div>
+
+</section>
+
+{% endblock %}

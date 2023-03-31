@@ -15,7 +15,7 @@
 
         <form name="inputForm" action="/sql" method="post">
             <p>Please enter the desired SQL tables structure and a query to perform:</p>
-            <textarea rows="10" cols="100" id="input" name="input">Employee(id, name, department_id)&#13;&#10;Department(id, name, address)&#13;&#10;Salary_Payments(id, employee_id, amount, date)&#13;&#10;A query to list the names of the departments which employed more than 10 employees in the last 3 months</textarea>
+            <textarea rows="10" cols="100" id="input" name="input">{{input_base}}</textarea>
             <br><br>
             <p><input type="submit" value="Convert to SQL" id="submit_button" onclick="loading();clearResponse();"></p>
         </form>

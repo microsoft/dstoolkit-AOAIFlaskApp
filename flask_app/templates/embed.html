@@ -16,11 +16,11 @@
         </br>
 
         <form name="inputForm" action="/embed" method="post">
-            <label for="text1">Please enter first text:</label>
-            <input type="text" id="text1" name="text1" value="Automobile">
+            <p>Please enter first text:</p>
+            <textarea rows="1" cols="50" id="text1" name="text1">{{input_base1}}</textarea>
             </br></br>
-            <label for="text2">Please enter second text:</label>
-            <input type="text" id="text2" name="text2" value="Vehicle">
+            <p>Please enter second text:</p>
+            <textarea rows="1" cols="50" id="text2" name="text2">{{input_base2}}</textarea>
             <br><br>
             <p><input type="submit" value="Compare text" id="submit_button" onclick="loading();clearResponse();"></p>
         </form>

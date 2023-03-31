@@ -18,8 +18,8 @@
         </br>
 
         <form name="inputForm" action="/search" method="post">
-            <label for="input">Please enter query:</label>
-            <input type="text" id="input" name="input" value="whole wheat pasta">
+            <p>Please enter query:</p>
+            <textarea rows="1" cols="50" id="input" name="input">{{input_base}}</textarea>
             <br><br>
             <p><input type="submit" value="Search reviews" id="submit_button" onclick="loading();clearResponse();"></p>
         </form>
