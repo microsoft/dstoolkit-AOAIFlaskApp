@@ -1,7 +1,7 @@
 # Project
 
 # Introduction 
-This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more. OpenAI APIs are used in place of Azure's OpenAI APIs until access to AOAI has been granted.
+This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more. 
 
 # Getting Started
 1.	create a virtual environment locally
@@ -12,8 +12,8 @@ This repo supplements the Azure OpenAI one-pager by providing code examples of s
 Run the app.py and load the website in your browser.
 There are 10 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
 1.  Call Centre Analytics uses Azure Speech to Text Service and OpenAI's GPT-3 model to perform analytics.
-2.  NLP to SQL - uses OpenAI's codex model to tranform natural language to an SQL query.
-3.  NLP to Python - uses OpenAI's codex model to tranform natural language to an SQL query.
+2.  NLP to SQL - uses OpenAI's codex model to transform natural language to an SQL query.
+3.  NLP to Python - uses OpenAI's codex model to tranform natural language to Python.
 4.  Synthetic Data Generation - Uses GPT-3's ability to follow natural language to create synthetic data.
 5.  User Stories - uses OpenAI's GPT-3 model to capture the IT requirements and main data attributes required by a technical system that encapsulates various user scenarios.
 6.  Text Generation -  Uses GPT-3's ability to follow natural language to create text.
