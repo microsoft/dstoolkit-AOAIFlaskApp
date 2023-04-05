@@ -1,7 +1,7 @@
 # Project
 
 # Introduction 
-This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity and document search. OpenAI APIs are used in place of Azure's OpenAI APIs until access to AOAI has been granted.
+This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more. OpenAI APIs are used in place of Azure's OpenAI APIs until access to AOAI has been granted.
 
 # Getting Started
 1.	create a virtual environment locally
@@ -10,16 +10,22 @@ This repo supplements the Azure OpenAI one-pager by providing code examples of s
 
 # Build and Test
 Run the app.py and load the website in your browser.
-There are 6 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
-1.  Summarise text - use case to generate a reference letter from mulitple points of discussion using GPT-3's Text Summarisation functionality.
-2.  Classify text - GPT-3 classifies text into one of multiple categories provided by the user.
-3.  NLP to SQL - uses OpenAI's codex model to tranform natural language to an SQL query.
-4.  Similarity Embedding - compares two pieces of text by transforming each into an embedding vector & using cosine similarity to generate a similarity score.
-5.  Document Search - creates embeddings for a set of Amazon food reviews (already done - just loaded into memory). compares these embeddings to the embedded user input and returns the top 3 reviews most similar to what the user asked.
-6.  Entity extraction - demonstrating zero-shot vs one-shot learning. An article is input and the names of companies as well as the names of people & their titles are extracted and returned to the user. Results should show improved accuracy with one-shot learning over zero-shot.
+There are 10 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
+1.  Call Centre Analytics uses Azure Speech to Text Service and OpenAI's GPT-3 model to perform analytics.
+2.  NLP to SQL - uses OpenAI's codex model to tranform natural language to an SQL query.
+3.  NLP to Python - uses OpenAI's codex model to tranform natural language to an SQL query.
+4.  Synthetic Data Generation - Uses GPT-3's ability to follow natural language to create synthetic data.
+5.  User Stories - uses OpenAI's GPT-3 model to capture the IT requirements and main data attributes required by a technical system that encapsulates various user scenarios.
+6.  Text Generation -  Uses GPT-3's ability to follow natural language to create text.
+7.  Classify Text -  GPT-3 classifies text into one of multiple categories provided by the user.
+8.  Similarity Embedding - compares two pieces of text by transforming each into an embedding vector & using cosine similarity to generate a similarity score.
+9.  Text Search - creates embeddings for a set of Amazon food reviews (already done - just loaded into memory). compares these embeddings to the embedded user input and returns the top 3 reviews most similar to what the user asked.
+10. Entity extraction - demonstrating zero-shot vs one-shot learning. An article is input and the names of companies as well as the names of people & their titles are extracted and returned to the user. Results should show improved accuracy with one-shot learning over zero-shot.
+
+Coming soon: ChatGPT, and Change Summary use cases.
 
 # Contribute
-Please reach out to clodaghlynch@microsoft.com for any questions, suggestions, or improvements. Thank you!
+Please reach out to clodaghlynch@microsoft.com, or henrytaylor@microsoft.com, for any questions, suggestions, or improvements. Thank you!
 
 # Resources
 https://microsofteur-my.sharepoint.com/:o:/g/personal/clodaghlynch_microsoft_com/Eg7NwxxSiBpDmyFOqlNmekIBcO_G6-_kG7SbOV7Y7pJIdg 
