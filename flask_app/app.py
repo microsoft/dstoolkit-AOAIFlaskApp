@@ -43,11 +43,11 @@ socketio = SocketIO(app)
 # kb_key = os.environ['kb_key']
 # kb_project = os.environ["kb_project"]
 #
-# def open_ai_US():
-#    openai.api_key = os.environ['api_key_us']
-#    openai.api_base = os.environ['api_base_us']
-#    openai.api_type = "azure"
-#    openai.api_version = "2022-12-01"
+def open_ai_US():
+    openai.api_key = os.environ['api_key_us']
+    openai.api_base = os.environ['api_base_us']
+    openai.api_type = "azure"
+    openai.api_version = "2022-12-01"
 #
 ### CHATGPT CODE
 
