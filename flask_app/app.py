@@ -392,7 +392,7 @@ def openai_text_search(user_input):
 
     input_embedding = get_embedding(user_input, engine=query_search_deployment)
 
-    df = pd.read_csv("flask_app/data/reviews_embedded.csv")
+    df = pd.read_csv("/flask_app/data/reviews_embedded.csv")
     df["curie_search"] = df.curie_search.apply(eval).apply(np.array)
 
     df["similarities"] = df.curie_search.apply(lambda x: cosine_similarity(x, input_embedding))
