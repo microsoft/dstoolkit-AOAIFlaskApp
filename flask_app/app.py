@@ -64,8 +64,6 @@ doc_search_deployment = "test-doc-search"
 query_search_deployment = "test-query-search"
 # chatgpt_deployment = "chatgpt"
 
-# hmrc_bmc = "Change summary: We are introducing a tax on Crisps and Chocolate in 2027 to support the Government's need to raise £200 billion, announced as part of a wider package for cornflake box remediation. We are considering the customer base and design options. We will advise ministers and obtain decisions on design in March 2025, with a consultation to be published in April 2025. We are working to an April 2027 commencement, but the announcement did not identify a specific month, so there may be flexibility. Initial options being considered are a type of surcharge or a tax on revenues. The next round of activity is to identify any other viable options and engage with Tech Team on how they can be delivered on time. Strategic Alignment: SO1 - this change will collect a new tax, SO2 - our design for this measure will make it straightforward for customers to meet their obligations, whilst being robust against forestalling and avoidance before/after commencement respectively, SO3 - fair treatment will be re-enforced by consultation with impacted customers and their representatives, SO4 - we are actively engaging with Comp to gain insight into the customer base and in designing the measure will identify opportunities for improving the colleague experience, SO5 - this measure's central justification is to support the remediation of a well-publicised issue. Key Partners: The Government and Treasury - to work up design through the policy partnership in 2025, Industry Specialists - providing information on the Crisp and Chocolate sector and working on the other levys in the overall package in 2025, Customers/agents/industry bodies - providing feedback on legislation/processes through consultation in 2025, Software providers - if any of the target customers make use of products in preparing returns, IT suppliers who may be required to build and support systems. Key activities: Design Phase, Finalise research into the customer base, explore costs and delivery timelines for options, Agree scope and design with Treasury, considering forestalling - before consultation, Consult with external stakeholders - 6 April - Treasury may consult informally prior to this, Determine anti-avoidance response, Understand impact on Compliance and Customer? Organisational Value: We aim to introduce a new charge/tax on the target population that meets SOs, avoids technical or process debt and increases revenue collected from the residential development sector. To ensure that the revenue aims for the policy are met, we will ensure robust anti avoidance provisions, enquiry powers and penalties are available. As this is intended to be a temporary measure we will need to consider processes/costs of de-commissioning. Customer Value: We now need to consider how the tax can be designed to support customers in meeting this new obligation without undue complexity. The measure will also need to fairly target the large developers to avoid distortive outcomes. Joining up data we already hold from other taxes will also be explored to ensure we reduce the burden on customers. Customer Relationships: Large Crisp and Chocolate Manufacturers will have an existing relationship with the Tax Authority  and will be well-advised. They will be comfortable meeting their own compliance obligations and will have the opportunity to raise concerns through consultation - existing data to make easy to use We are making regular use of the sector leads to understand customer complexity. Channels: The measure has already been announced and so developers likely in scope have provided initial media comment. More detailed feedback and awareness of the policy will be obtained through early consultation, launching in April 2021. Guidance will be published around commencement. We intend customers to meet their obligations either through existing or new IT systems. We will consider the processes already in place for the main taxes they encounter. Customer Segments: This measure will be targeted at large crisp and chocolate manufacturers. We have identified two core customer segments: • Traditional chocolate manufacturers and large bagged snack manufacturers • Structures funded by offshore investors will require further considerations. Cost: No commitments have been made to yet on how much delivery of this policy will cost. Before we can obtain more detailed costings we will need to decide on the design of the tax. We will also liaise with policy teams introducing new taxes to understand their cost drivers. Revenue: The ministerial announcement set out an intention for this tax to raise £200 billion to contribute towards cornflake box remediation work, from 2022-2032. It should be noted though that money raised from this measure will not be hypothecated."
-
 @app.route('/', methods=['GET'])
 def index():
     return render_template("index.html")
@@ -188,105 +186,6 @@ def call_centre():
         response = transcript_analytics(functionality)
 
         return render_template("call_centre.html", fooResponse=response)
-    
-# ############### CHANGE SUMMARY
-# @app.route('/change_summary', methods=['GET', 'POST'])
-# def change_summary():
-#     open_ai_EUR()
-#     if request.method == "GET":
-#         return render_template("change_summary.html")
-#     if request.method == "POST":
-#         if 'submit-button1' in request.form:
-#             response = openai_hmrc_change_summary(hmrc_bmc)
-#         return render_template("change_summary.html", fooResponse=response)
-#
-# @app.route('/download_change_summary', methods=['GET', 'POST'])
-# def download_change_summary():
-#     open_ai_EUR()
-#     return send_file(base_path + "/return_data/ChangeSummary.xlsx", as_attachment=True)
-#
-# ############## END OF CHANGE SUMMARY
-
-# ################ CHATGPT
-# @app.route('/hmrcchat', methods=['GET', 'POST']) #https://codinginfinite.com/chatbot-in-python-flask-tutorial/
-# def hmrcchat():
-#     open_ai_US()
-#     global messages
-#     messages = []
-#     if request.method == "GET":
-#         return render_template("hmrcchat.html")
-    
-# def create_prompt(system_message, messages):
-#     """defining a function to create the prompt from the system message and the messages shared between entities"""
-#     prompt = system_message
-#     message_template = "\n<|im_start|>{}\n{}\n<|im_end|>"
-#     for message in messages:
-#         prompt += message_template.format(message['role'], message['content'])
-#     prompt += "\n<|im_start|>assistant\n"
-#     return prompt
-
-# def add_messages(message_hist, entity, message):
-#     """defining a function to add messages to history"""
-#     message_hist.append({"role": entity, "content": message})
-#     return message_hist
-
-# def setup_chat():
-#     # defining the system message
-#     domain= "HMRC"
-#     system_message_template = "<|im_start|>system \n{}\n<|im_end|>"
-#     system_message_template = system_message_template.format('''
-#                                                     You are a {} assistant chatbot. Form responses professionally and concise.
-#                                                     Your Knowledge bank: "{}". Form responses by using your knowledge bank or related to {} only.
-#                                                     Dont reply to anything.
-#                                                     ''')
-#     system_message_chat = system_message_template.format(domain, "", domain)
-#     return domain, system_message_chat, system_message_template
-
-# @app.route("/get_response")
-# # function for the bot response
-# def get_response():
-#     domain, system_message_chat, system_message_template = setup_chat()
-#     save_chat=True # BOOL TO POSS IMPROVE REPLIES
-#     user_message = request.args.get('msg') # FETECH FROM JS
-#     knowledge_base = ""
-#     try:
-#         KB_client = QuestionAnsweringClient(kb_endpoint, AzureKeyCredential(kb_key))
-#         with KB_client:
-#             output = KB_client.get_answers(
-#                 question=user_message,
-#                 top=3,
-#                 confidence_threshold=0.2,
-#                 include_unstructured_sources=True,
-#                 short_answer_options=qna.ShortAnswerOptions(
-#                     confidence_threshold=0.2,
-#                     top=1
-#                 ),
-#                 project_name=kb_project,
-#                 deployment_name="test"
-#             )
-#             for additionl_details in output.answers:
-#                 if additionl_details.confidence>=0.6:
-#                     knowledge_base = knowledge_base + "\n\n" + str(additionl_details.answer)
-#     except: 
-#         pass
-    
-#     system_message_chat = system_message_template.format(domain, knowledge_base, domain)
-#     global messages
-#     messages = add_messages(messages, "user", user_message)
-#     response = openai.Completion.create(
-#                                         engine="chatgpt",
-#                                         prompt= create_prompt(system_message_chat, messages),
-#                                         temperature=0.7,
-#                                         max_tokens=4000,
-#                                         top_p=0.95,
-#                                         frequency_penalty=0,
-#                                         presence_penalty=0,
-#                                         stop=["<|im_end|>"])
-#     chatgpt_reply = response["choices"][0]['text']
-#     if save_chat:
-#         messages = add_messages(messages, "assistant", chatgpt_reply)
-#     return str(chatgpt_reply)
-# ################ CHATGPT
 
 @app.route('/download_generated_data', methods=['GET', 'POST'])
 def download_generated_data():
@@ -315,7 +214,6 @@ def user_stories():
             response = openai_data_attr(user_stories)
             return render_template("user_stories.html", t=response[0], str=response[1])
     
-
 def openai_text_summarisation(user_input):
 
     response = openai.Completion.create(
@@ -485,96 +383,6 @@ def prompt_response(prompt):
         stop=None
     )
     return response
-
-# def openai_hmrc_change_summary(user_input):
-
-#     opening_line = "Below is the text extracted from a Business Model Canvas template capturing an upcoming change impacting the HMRC."
-    
-#     prompt_key_outcomes = opening_line + "Provide a detailed summary that captures the key outcomes of this change in a paragraph."
-#     prompt_stakeholders = opening_line + "Identify every stakeholder group. Return their role in the economy and their role in the change in a table."
-#     prompt_constraints = opening_line + "Generate a paragraph that captures the key constraints of implementing the change."
-#     prompt_risks = opening_line + "List the main risks of implementing this change in a paragraph."
-#     prompt_assumptions = opening_line + "Summarize the main assumptions made about this change."
-#     prompt_issues = opening_line + "Describe the potential issues that may be caused by the tax."
-#     prompt_dependencies = opening_line + "Identify the main dependencies that exist within the implementation of this change."
-#     prompt_decisions_made = opening_line + "Summarize the decisions that have already been made."
-#     prompt_decisions_tobemade = opening_line + "Summarize the key decisions that still have to be made about the change."
-#     prompt_emerging = opening_line + "Summarize the detail of any key emerging requirements in order to implement the change."
-#     prompt_tech_capabilities = opening_line + "List and describe in detail the key technical capabilities that may be required to deliver this change."
-
-#     start_string = "\n\nText: \"\"\"\n"
-#     end_string = "\n\"\"\""
-    
-#     bmc = start_string + user_input + end_string
-
-#     response_key_outcomes = prompt_response(prompt_key_outcomes + bmc)
-#     df1 = pd.DataFrame({'Key Outcomes': [response_key_outcomes.choices[0].text.lstrip()]})
-
-#     response_stakeholders = prompt_response(prompt_stakeholders + bmc)
-#     df2 = pd.read_csv(StringIO(response_stakeholders.choices[0].text), sep='|')
-#     df2 = df2.set_axis(['Stakholder Group', 'Role', 'Relationship with the Tax Authority'], axis=1)
-
-#     response_constraints = prompt_response(prompt_constraints + bmc)
-#     constraints = response_constraints.choices[0].text.lstrip().replace("- ","")
-
-#     response_risks = prompt_response(prompt_risks + bmc)
-#     risks = response_risks.choices[0].text.lstrip().replace("- ","")
-
-#     response_assumptions = prompt_response(prompt_assumptions + bmc)
-#     assumptions = response_assumptions.choices[0].text.lstrip().replace("- ","")
-
-#     response_issues = prompt_response(prompt_issues + bmc)
-#     issues = response_issues.choices[0].text.lstrip().replace("- ","")
-
-#     response_dependencies = prompt_response(prompt_dependencies + bmc)
-#     dependencies = response_dependencies.choices[0].text.lstrip().replace("- ","")
-
-#     response_decisions_made = prompt_response(prompt_decisions_made + bmc)
-#     decisions_made = response_decisions_made.choices[0].text.lstrip().replace("- ","")
-
-#     response_decisions_tbd = prompt_response(prompt_decisions_tobemade + bmc)
-#     decisions_tbd = response_decisions_tbd.choices[0].text.lstrip().replace("- ","")
-
-#     df3 = pd.DataFrame({"Key Constraints": [constraints], "Risks": [risks],
-#                         'Assumptions':[assumptions], 'Issues':[issues], "Dependencies": [dependencies],
-#                         "Decisions Made" : [decisions_made], "Decisions to be made":[decisions_tbd]})
-
-#     response_emerging = prompt_response(prompt_emerging + bmc)
-#     emerging = response_emerging.choices[0].text.lstrip()
-#     emerging = emerging.replace("- ","").splitlines()
-#     for i in range(1, len(emerging)):
-#         emerging[i] = str(i) + ". " + emerging[i]
-#     df4 = pd.DataFrame({'Emerging Requirements': emerging[1:len(emerging)]})
-
-#     response_tech_capabilities = prompt_response(prompt_tech_capabilities + bmc)
-#     tech_capabilities = response_tech_capabilities.choices[0].text.lstrip().splitlines()
-#     df5 = pd.DataFrame({'Technical Capabilities': tech_capabilities[1:len(tech_capabilities)]})
-
-#     with ExcelWriter(base_path + "/return_data/ChangeSummary.xlsx", engine='xlsxwriter') as writer:
-#         df1.to_excel(writer, sheet_name="Key Outcomes", index=False)
-#         df2.to_excel(writer, sheet_name="Stakeholders", index=False)
-#         df3.to_excel(writer, sheet_name="Key Considerations", index=False)
-#         df4.to_excel(writer, sheet_name="Emerging Requirements", index=False)
-#         df5.to_excel(writer, sheet_name="Technical Capabilities", index=False)
-
-#         workbook=writer.book
-#         worksheet = writer.sheets['Key Outcomes']
-#         format = workbook.add_format({'text_wrap':True})
-#         worksheet.set_column(0,1, 30, format)
-
-#         worksheet = writer.sheets['Stakeholders']
-#         worksheet.set_column(0,2, 30, format)
-
-#         worksheet = writer.sheets['Key Considerations']
-#         worksheet.set_column(0,6, 30, format)
-
-#         worksheet = writer.sheets['Emerging Requirements']
-#         worksheet.set_column(0,2, 30, format)
-
-#         worksheet = writer.sheets['Technical Capabilities']
-#         worksheet.set_column(0,2, 30, format)
-
-#     return "Download Change Summary"
 
 def transcript_analytics(functionality):
     with open(base_path + '/return_data/transcript.txt', 'r') as file:
