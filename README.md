@@ -10,7 +10,7 @@ This repo supplements the Azure OpenAI one-pager by providing code examples of s
 
 # Build and Test
 Run the app.py and load the website in your browser.
-There are 10 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt
+There are 10 pages, each has sample input pre-loaded into the input forms. Sample input & corresponding output can be seen in samples.txt.
 1.  Call Centre Analytics uses Azure Speech to Text Service and OpenAI's GPT-3 model to perform analytics.
 2.  NLP to SQL - uses OpenAI's codex model to transform natural language to an SQL query.
 3.  NLP to Python - uses OpenAI's codex model to tranform natural language to Python.
