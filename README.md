@@ -1,7 +1,7 @@
 # Project
 
 # Introduction 
-This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more.
+This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more. Coming soon: ChatGPT, and Change Summary use cases.
 
 # Getting Started
 1.	create a virtual environment locally
