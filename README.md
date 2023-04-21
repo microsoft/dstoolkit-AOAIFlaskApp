@@ -1,7 +1,10 @@
 # Project
 
 # Introduction 
-This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of OpenAI e.g. text summarisation, NLP to code, text classification, text similarity, document search and more. Coming soon: ChatGPT, and Change Summary use cases.
+This repo supplements the Azure OpenAI one-pager by providing code examples of some of the functionalities of the OpenAI GPT models e.g. call anaytics, sentiment anaysis, ChatGPT, text summarisation, NLP to code, text classification, text similarity, document search and more. 
+
+New Updates: ChatGPT.
+Coming soon: Change Summary use cases.
 
 # Getting Started
 1.	create a virtual environment locally
@@ -21,8 +24,10 @@ There are 10 pages, each has sample input pre-loaded into the input forms. Sampl
 8.  Similarity Embedding - compares two pieces of text by transforming each into an embedding vector & using cosine similarity to generate a similarity score.
 9.  Text Search - creates embeddings for a set of Amazon food reviews (already done - just loaded into memory). compares these embeddings to the embedded user input and returns the top 3 reviews most similar to what the user asked.
 10. Entity extraction - demonstrating zero-shot vs one-shot learning. An article is input and the names of companies as well as the names of people & their titles are extracted and returned to the user. Results should show improved accuracy with one-shot learning over zero-shot.
+11. Micrsoft Assistant Chatbot (ChatGPT) - demonstrating ChatGPT's abilities when integrated into a website. Model is prompted to be a Microsoft assistant chatbot using its own knowledge. This could be extended with fine-tuning, or using a source of external knowledge such as Azure Cognitive Search. 
 
-Coming soon: ChatGPT, and Change Summary use cases.
+New Updates: ChatGPT (MS Assistant)
+Coming soon: Change Summary use cases.
 
 # Contribute
 Please reach out to clodaghlynch@microsoft.com, or henrytaylor@microsoft.com, for any questions, suggestions, or improvements. Thank you!
