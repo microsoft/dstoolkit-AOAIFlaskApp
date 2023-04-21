@@ -89,6 +89,36 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+#textInput {
+  border: none;
+  border-bottom: 0px solid aqua;
+}
+
+.userText {
+  color: white;
+  font-family: monospace;
+  font-size: 18px;
+  text-align: right;
+  line-height: 30px;
+}
+.userText span {
+  background-color: #2cabea;
+  padding: 5px;
+  border-radius: 1px;
+}
+.botText {
+  color: white;
+  font-family: monospace;
+  font-size: 18px;
+  text-align: left;
+  line-height: 30px;
+}
+.botText span {
+  background-color: #9e85d4;
+  padding: 5px;
+  border-radius: 1px;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
