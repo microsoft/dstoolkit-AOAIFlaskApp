@@ -17,37 +17,11 @@ from azure.core.credentials import AzureKeyCredential
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-### KEYVAULT CODE
-# keyVaultName = os.environ['KEYVAULT_NAME']
-# KVUri = f"https://{keyVaultName}.vault.azure.net"
-#
-# default_credential = DefaultAzureCredential()
-# credential = DefaultAzureCredential()
-# client = SecretClient(vault_url=KVUri, credential=credential)
-#
-# aoai_api_key_secret = "AOAI-API-KEY"
-# aoai_api_base_secret = "AOAI-API-BASE"
-#
-# aoai_api_key = client.get_secret(aoai_api_key_secret)
-# aoai_api_base = client.get_secret(aoai_api_base_secret)
-#
-# openai.api_key = aoai_api_key
-# openai.api_base = aoai_api_base
-### KEYVAULT CODE
-
-### CHATGPT CODE
-#
-# kb_endpoint = os.environ['kb_endpoint']
-# kb_key = os.environ['kb_key']
-# kb_project = os.environ["kb_project"]
-#
 def open_ai_US():
     openai.api_key = os.environ['api_key_us']
     openai.api_base = os.environ['api_base_us']
     openai.api_type = "azure"
     openai.api_version = "2022-12-01"
-#
-### CHATGPT CODE
 
 def open_ai_EUR():
     openai.api_key = os.environ['api_key']
@@ -60,11 +34,72 @@ codex_deployment = "test-codex"
 embeddings_deployment = "test-embeddings"
 doc_search_deployment = "test-doc-search"
 query_search_deployment = "test-query-search"
-# chatgpt_deployment = "chatgpt"
+chatgpt_deployment = "chatgpt"
 
 @app.route('/', methods=['GET'])
 def index():
     return render_template("index.html")
+
+################ CHATGPT
+@app.route('/chatGPT', methods=['GET', 'POST']) #https://codinginfinite.com/chatbot-in-python-flask-tutorial/
+def chatGPT():
+    open_ai_US()
+    global messages
+    messages = []
+    if request.method == "GET":
+        return render_template("chatGPT.html")
+    
+def create_prompt(system_message, messages):
+    """defining a function to create the prompt from the system message and the messages shared between entities"""
+    prompt = system_message
+    message_template = "\n<|im_start|>{}\n{}\n<|im_end|>"
+    for message in messages:
+        prompt += message_template.format(message['role'], message['content'])
+    prompt += "\n<|im_start|>assistant\n"
+    return prompt
+
+def add_messages(message_hist, entity, message):
+    """defining a function to add messages to history"""
+    message_hist.append({"role": entity, "content": message})
+    return message_hist
+
+def setup_chat():
+    # defining the system message
+    domain= "Microsoft" # add domain here
+    system_message_template = "<|im_start|>system \n{}\n<|im_end|>"
+    system_message_template = system_message_template.format('''
+                                                    You are a {} assistant chatbot. Form responses professionally and concise.
+                                                    Your Knowledge bank: "{}". Form responses by using your knowledge bank or related to {} only.
+                                                    Dont reply to anything.
+                                                    ''')
+    system_message_chat = system_message_template.format(domain, "", domain)
+    return domain, system_message_chat, system_message_template
+
+@app.route("/get_response")
+# function for the bot response
+def get_response():
+    domain, system_message_chat, system_message_template = setup_chat()
+    save_chat=True # BOOL TO POSS IMPROVE REPLIES
+    user_message = request.args.get('msg') # FETECH FROM JS
+    knowledge_base = "" # insert endpoint/ knowledge base fetch
+    
+    system_message_chat = system_message_template.format(domain, knowledge_base, domain)
+    global messages
+    messages = add_messages(messages, "user", user_message)
+    response = openai.Completion.create(
+                                        engine=chatgpt_deployment,
+                                        prompt= create_prompt(system_message_chat, messages),
+                                        temperature=0.7,
+                                        max_tokens=4000,
+                                        top_p=0.95,
+                                        frequency_penalty=0,
+                                        presence_penalty=0,
+                                        stop=["<|im_end|>"])
+    chatgpt_reply = response["choices"][0]['text']
+    if save_chat:
+        messages = add_messages(messages, "assistant", chatgpt_reply)
+    return str(chatgpt_reply)
+################ CHATGPT
 
 @app.route('/text', methods=['GET', 'POST'])
 def text():
