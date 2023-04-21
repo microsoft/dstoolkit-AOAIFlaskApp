@@ -13,8 +13,6 @@ base_path = sys.path[0]
 from pandas import ExcelWriter
 from flask_socketio import SocketIO
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.language.questionanswering import QuestionAnsweringClient
-from azure.ai.language.questionanswering import models as qna
 
 app = Flask(__name__)
 socketio = SocketIO(app)
